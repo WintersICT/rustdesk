@@ -57,7 +57,32 @@ Please download Sciter dynamic library yourself.
 
 [Windows](https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.win/x64/sciter.dll) |
 [Linux](https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.lnx/x64/libsciter-gtk.so) |
+
 [macOS](https://raw.githubusercontent.com/c-smile/sciter-sdk/master/bin.osx/libsciter.dylib)
+
+## Firebase API keys
+
+The repository ships with placeholder Firebase API values. Provide real keys via
+environment variables or a build script before running Flutter builds. The files
+that require injection are:
+
+- `flutter/android/app/google-services.json` – replace `${ANDROID_FIREBASE_API_KEY}`.
+- `flutter/ios/Runner/GoogleService-Info.plist` – replace `${IOS_FIREBASE_API_KEY}`.
+- `flutter/web/index.html` – define `window.FIREBASE_API_KEY` or set
+  `${WEB_FIREBASE_API_KEY}` during build.
+
+Example using `envsubst`:
+
+```bash
+ANDROID_FIREBASE_API_KEY=XXXX \
+IOS_FIREBASE_API_KEY=YYYY \
+WEB_FIREBASE_API_KEY=ZZZZ \
+envsubst < flutter/android/app/google-services.json > flutter/android/app/google-services.json && \
+envsubst < flutter/ios/Runner/GoogleService-Info.plist > flutter/ios/Runner/GoogleService-Info.plist
+```
+
+For web builds, inject a script setting `window.FIREBASE_API_KEY` before loading
+`index.html` or replace the placeholder with a similar command.
 
 ## Raw steps to build
 
