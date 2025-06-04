@@ -164,7 +164,7 @@
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
-      apiKey: "AIzaSyCgehIZk1aFP0E7wZtYRRqrfvNiNAF39-A",
+      apiKey: window.FIREBASE_API_KEY || "${WEB_FIREBASE_API_KEY}",
       authDomain: "rustdesk.firebaseapp.com",
       databaseURL: "https://rustdesk.firebaseio.com",
       projectId: "rustdesk",
